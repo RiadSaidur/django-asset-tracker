@@ -40,6 +40,12 @@ def ListAssetByEmployee(request, id):
   serializer = AssetSeiralizer(assets, many=True)
   return Response(serializer.data)
 
+@api_view(['GET'])
+def ListAssetByCompany(request, id):
+  assets = Asset.objects.filter(employee__company=id)
+  serializer = AssetSeiralizer(assets, many=True)
+  return Response(serializer.data)
+
 
 @api_view(['POST'])
 def AddAsset(request):
